@@ -52,7 +52,7 @@ struct Opt {}
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let _opt = Opt::from_args();
-    let cfg: Config = confy::load("tempoit")?;
+    let cfg: Config = confy::load("tempoit", Some("tempoit"))?;
     let logs_client = TimewClient::new(cfg.ticket_regex);
 
     let parsed_intervals = logs_client.get_worklogs()?;
