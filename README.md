@@ -1,8 +1,8 @@
-# Tempoit &emsp; [![Crates.io](https://img.shields.io/crates/v/tempoit)](https://crates.io/crates/tempoit)
+# Tempoit
+
+[![Crates.io](https://img.shields.io/crates/v/tempoit)](https://crates.io/crates/tempoit)
 
 Simple timewarrior to tempo/jira worklog uploader.
-
-Copyright © 2020 Samuel Walladge
 
 ## About
 
@@ -101,7 +101,7 @@ If you're interested in using this tool/library and have requests, feel free to 
 
 ## License
 
-Copyright © 2020 Samuel Walladge
+Copyright © 2020-2021 Samuel Walladge
 
 Dual licensed under either of
 
