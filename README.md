@@ -12,6 +12,8 @@ I track time locally using timewarrior, using tags to mark logs for work that re
 This tool filters and parses the timewarrior logs, converts them to tempo-compatible worklogs,
 uploads them, and marks them as uploaded in timewarrior by modifying the tags.
 
+See [ROADMAP](./ROADMAP.md) for planned future development.
+
 ## Installation
 
 Install from crates: `cargo install tempoit`, or clone this repository and `cargo run` or `cargo build`.
