@@ -17,7 +17,12 @@ uploads them, and marks them as uploaded in timewarrior by modifying the tags.
 Install from crates: `cargo install tempoit`, or clone this repository and `cargo run` or `cargo build`.
 You should have a recent stable rust toolchain installed.
 
-On first run, `~/.config/tempoit/tempoit.toml` (or equivalent default path for your system) will be created.
+On first run, a default `tempoit/tempoit.toml` configuration file will be created in your [`config_dir`](https://crates.io/crates/directories-next#user-content-basedirs).
+
+You can find the configuration file using the following paths, based on which system you're using.
+* Linux: `$HOME/.config/tempoit/tempoit.toml`
+* Windows: `{FOLDERID_RoamingAppData}/tempoit/tempoit.toml`
+* macOS: `$HOME/Library/Application Support/rs.tempoit/tempoit.toml`
 
 Configure to suit - example below:
 
@@ -28,7 +33,7 @@ password = 'my_password'
 # base url of the jira instance
 base_url = 'https://tasks.opencraft.com'
 # be careful with backslashes; use single quoted string to avoid needing double backslashes in reex
-ticket_regex = '^(?i:SE|BB|OC|MNG|BIZ|ADMIN)-\d+$'
+ticket_regex = '^(?i:FAL|SE|BB|OC|MNG|BIZ|ADMIN)-\d+$'
 ```
 
 ## Usage
