@@ -7,7 +7,7 @@ readme = "README.md"
 keywords = ["cli", "timewarrior", "jira", "tempo"]
 repository = "https://git.sr.ht/~swalladge/tempoit"
 categories = ["command-line-utilities"]
-license = "MIT OR Apache-2.0"
+license = "GPL-3.0-only"
 edition = "2018"
 
 [dependencies]
