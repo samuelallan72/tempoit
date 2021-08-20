@@ -101,6 +101,10 @@ The code is also structured in a way that makes it possible to use the timewarri
 For now, it works for me, so I probably won't do much more work on it apart from fixing bugs or keeping it up to date with my workflow.
 If you're interested in using this tool/library and have requests, feel free to open an issue and/or a pull request! :)
 
+## Contributing
+
+Please send your comments, bug reports, feature requests, and patches to this public mailing list: ~swalladge/public-inbox@lists.sr.ht ([archives](https://lists.sr.ht/~swalladge/public-inbox)).
+
 ## License
 
 Copyright © 2020-2021 Samuel Walladge and contributors
