@@ -1,7 +1,5 @@
 # Tempoit
 
-[![Crates.io](https://img.shields.io/crates/v/tempoit)](https://crates.io/crates/tempoit)
-
 Simple timewarrior to tempo/jira worklog uploader.
 
 ## About
@@ -12,11 +10,22 @@ I track time locally using timewarrior, using tags to mark logs for work that re
 This tool filters and parses the timewarrior logs, converts them to tempo-compatible worklogs,
 uploads them, and marks them as uploaded in timewarrior by modifying the tags.
 
-See [ROADMAP](./ROADMAP.md) for planned future development.
-
 ## Installation
 
-Install from crates: `cargo install tempoit`, or clone this repository and `cargo run` or `cargo build`.
+Install with cargo:
+
+```
+cargo install --git https://github.com/samuelallan72/tempoit.git tempoit
+```
+
+or clone this repository build and run with cargo:
+
+```
+git clone https://github.com/samuelallan72/tempoit.git
+cargo build
+cargo run
+```
+
 You should have a recent stable rust toolchain installed.
 
 On first run, a default `tempoit/tempoit.toml` configuration file will be created in your [`config_dir`](https://crates.io/crates/directories-next#user-content-basedirs).
@@ -34,8 +43,8 @@ username = 'my_username'
 password = 'my_password'
 # base url of the jira instance
 base_url = 'https://tasks.opencraft.com'
-# be careful with backslashes; use single quoted string to avoid needing double backslashes in reex
-ticket_regex = '^(?i:FAL|SE|BB|OC|MNG|BIZ|ADMIN)-\d+$'
+# be careful with backslashes; use single quoted string to avoid needing double backslashes in the regex
+ticket_regex = '^(?i:STAR|FAL|SE|BB|OC|MNG|BIZ|ADMIN)-\d+$'
 ```
 
 ## Usage
@@ -103,11 +112,11 @@ If you're interested in using this tool/library and have requests, feel free to 
 
 ## Contributing
 
-Please send your comments, bug reports, feature requests, and patches to this public mailing list: ~swalladge/public-inbox@lists.sr.ht ([archives](https://lists.sr.ht/~swalladge/public-inbox)).
+Please feel free to open an issue or submit a pull request. :)
 
 ## License
 
-Copyright © 2020-2021 Samuel Walladge and contributors
+Copyright © 2020-2025 Samuel Allan and contributors
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
