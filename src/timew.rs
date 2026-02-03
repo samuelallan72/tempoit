@@ -24,7 +24,7 @@ where
     let date_string = String::deserialize(deserializer)?;
     NaiveDateTime::parse_from_str(&date_string, "%Y%m%dT%H%M%SZ")
         .map_err(serde::de::Error::custom)
-        .map(|x| DateTime::<Utc>::from_utc(x, Utc))
+        .map(|x| DateTime::<Utc>::from_naive_utc_and_offset(x, Utc))
 }
 
 fn deserialize_option_datetime<'de, D>(deserializer: D) -> Result<Option<DateTime<Utc>>, D::Error>
@@ -36,7 +36,7 @@ where
         .map(|x| {
             NaiveDateTime::parse_from_str(&x, "%Y%m%dT%H%M%SZ")
                 .map_err(serde::de::Error::custom)
-                .map(|x| DateTime::<Utc>::from_utc(x, Utc))
+                .map(|x| DateTime::<Utc>::from_naive_utc_and_offset(x, Utc))
         })
         .transpose()
 }
@@ -58,7 +58,11 @@ struct Interval {
 
 impl fmt::Display for Interval {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let date = self.end.unwrap_or(self.start).date().format("%Y-%m-%d");
+        let date = self
+            .end
+            .unwrap_or(self.start)
+            .date_naive()
+            .format("%Y-%m-%d");
         let duration = match self.end {
             Some(end) => {
                 let duration = end - self.start;
@@ -92,7 +96,7 @@ fn parse_interval(ticket_regex: &Regex, interval: &Interval) -> Result<Worklog, 
     };
 
     let duration = end - interval.start;
-    let date = end.with_timezone(&Local).date().naive_local();
+    let date = end.with_timezone(&Local).date_naive();
 
     let issue = match interval.tags.iter().find(|x| ticket_regex.is_match(x)) {
         Some(issue) => issue.to_uppercase(),
@@ -127,9 +131,7 @@ pub struct TimewClient {
 
 impl TimewClient {
     pub fn new(ticket_regex: Regex) -> Self {
-        Self {
-            ticket_regex,
-        }
+        Self { ticket_regex }
     }
 
     pub fn get_worklogs(&self) -> ClientResult<Vec<Result<Worklog, String>>> {
@@ -140,7 +142,10 @@ impl TimewClient {
         let export_contents = str::from_utf8(&proc.stdout)?;
         let intervals: Vec<Interval> = serde_json::from_str(export_contents)?;
 
-        Ok(intervals.iter().map(|x| parse_interval(&self.ticket_regex, x)).collect())
+        Ok(intervals
+            .iter()
+            .map(|x| parse_interval(&self.ticket_regex, x))
+            .collect())
     }
 
     pub fn record_success(&self, id: &str) -> ClientResult<()> {

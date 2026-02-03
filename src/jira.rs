@@ -69,15 +69,15 @@ struct LoginForm<'a> {
 #[derive(Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 struct LoginResponse {
-    allow_cookies: bool,
-    captcha_failure: bool,
-    communication_error: bool,
-    contact_admin_link: String,
-    external_user_management: bool,
-    is_elevated_security_check_shown: bool,
-    is_public_mode: bool,
-    login_error: bool,
-    login_failed_by_permissions: bool,
+    // allow_cookies: bool,
+    // captcha_failure: bool,
+    // communication_error: bool,
+    // contact_admin_link: String,
+    // external_user_management: bool,
+    // is_elevated_security_check_shown: bool,
+    // is_public_mode: bool,
+    // login_error: bool,
+    // login_failed_by_permissions: bool,
     login_succeeded: bool,
 }
 
@@ -164,11 +164,11 @@ impl JiraClient {
         // https://tasks.opencraft.com/rest/tempo-rest/1.0/worklogs/remainingEstimate/calculate/SE-2552/2019-05-29/2019-05-29/3m
         let estimate_url = format!(
             "{base_url}/rest/tempo-rest/1.0/worklogs/remainingEstimate/calculate/{issue}/{date}/{date}/{duration}?username={username}",
-            base_url=self.base_url,
-            issue=worklog.issue,
-            date=worklog.date.format("%Y-%m-%d").to_string(),
-            duration=duration_to_jira(&worklog.duration),
-            username=&self.username,
+            base_url = self.base_url,
+            issue = worklog.issue,
+            date = worklog.date.format("%Y-%m-%d").to_string(),
+            duration = duration_to_jira(&worklog.duration),
+            username = &self.username,
         );
         let estimate_response = self
             .client

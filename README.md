@@ -28,7 +28,7 @@ cargo run
 
 You should have a recent stable rust toolchain installed.
 
-On first run, a default `tempoit/tempoit.toml` configuration file will be created in your [`config_dir`](https://crates.io/crates/directories-next#user-content-basedirs).
+On first run, a default `tempoit/tempoit.toml` configuration file will be created in your systems config directory - see [etcetera `AppStrategy` docs](https://docs.rs/etcetera/latest/etcetera/#appstrategy) for more information.
 
 You can find the configuration file using the following paths, based on which system you're using.
 * Linux: `$HOME/.config/tempoit/tempoit.toml`

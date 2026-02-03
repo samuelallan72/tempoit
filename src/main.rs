@@ -1,12 +1,12 @@
-use std::io::{stdin, stdout, Write};
+use std::io::{Write, stdin, stdout};
 
 use chrono::Duration;
 use confy;
+use regex::Regex;
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 use structopt::StructOpt;
-use regex::Regex;
 
-use tempoit::jira::{duration_to_jira, JiraClient};
+use tempoit::jira::{JiraClient, duration_to_jira};
 use tempoit::timew::TimewClient;
 
 fn deserialize_regex<'de, D>(deserializer: D) -> Result<Regex, D::Error>
@@ -40,7 +40,8 @@ impl Default for Config {
             username: "user".to_owned(),
             password: "pass".to_owned(),
             base_url: "https://tasks.opencraft.com".to_owned(),
-            ticket_regex: Regex::new(r"^(?i:FAL|SE|BB|OC|MNG|BIZ|ADMIN)-\d+$").expect("default regex is invalid"),
+            ticket_regex: Regex::new(r"^(?i:FAL|SE|BB|OC|MNG|BIZ|ADMIN)-\d+$")
+                .expect("default regex is invalid"),
         }
     }
 }
